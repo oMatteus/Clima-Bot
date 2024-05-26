@@ -74,6 +74,7 @@ async function getClima(){
 const app = express();
 
 app.get('/get', (request, response)=>{
-    return response.send(getClima())
+    return response.send({message:'server is up',status: 200,clima: getClima()})
 })
+
 app.listen(3333)
