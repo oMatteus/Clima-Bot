@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 
 console.log('Bot Clima');
+let clima;
 
 async function getClima(){
     const browser = await puppeteer.launch({
@@ -64,17 +65,22 @@ async function getClima(){
         ],
     }
 
-    console.log(clima);
     await browser.close();
     return clima
 };
 
-
+ 
+async function start(){
+    console.log('chamou');
+    clima = await getClima();
+    console.log(clima);
+}
+start();
 
 const app = express();
 
 app.get('/get', (request, response)=>{
-    return response.send({message:'server is up',status: 200,clima: getClima()})
+    return response.send({message:'server is up',status: 200,clima: clima})
 })
 
 app.listen(3333)
