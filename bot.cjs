@@ -65,26 +65,15 @@ async function getClima(){
     }
 
     console.log(clima);
-   
     await browser.close();
+    return clima
 };
-getClima()
-
-
-
-
-
-
-
-
-
 
 
 
 const app = express();
 
 app.get('/get', (request, response)=>{
-    return response.send({message:'server is up',status: 200})
+    return response.send(getClima())
 })
-
 app.listen(3333)
