@@ -1,0 +1,11 @@
+{
+    "name": "api-clima",
+    "version": "1.0.0",
+    "description": "",
+    "main": "assets/js/main.js",
+    "type": "module",
+    "dependencies": {
+        "express": "^4.19.2",
+        "puppeteer": "^22.10.0"
+    }
+}
