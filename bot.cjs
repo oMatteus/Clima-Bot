@@ -79,8 +79,12 @@ start();
 
 const app = express();
 
+app.get('/status', (request, response)=>{
+    return response.send({message:'server is up',status: 200})
+})
+
 app.get('/get', (request, response)=>{
-    return response.send({message:'server is up',status: 200,clima: clima})
+    return response.send(clima)
 })
 
 app.listen(3333)
