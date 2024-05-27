@@ -85,6 +85,7 @@ start();
 const app = express();
 app.use(cors())
 
+app.set(json, clima)
 
 app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200})
