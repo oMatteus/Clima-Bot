@@ -87,7 +87,7 @@ app.use(cors())
 
 
 app.get('/status', (request, response)=>{
-    return response.send({message:'server is up',status: 200})
+    return response.send({message:'server is up',status: 201})
 })
 
 app.get('/get', (request, response)=>{
