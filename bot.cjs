@@ -86,12 +86,12 @@ const app = express();
 app.use(cors())
 
 
-app.get('/status', cors(), (request, response)=>{
+app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200})
 })
 
 app.get('/get', (request, response)=>{
-    return response.json(clima)
+    response.json(clima)
 })
 
 app.listen(3333)
