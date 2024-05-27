@@ -85,7 +85,8 @@ start();
 const app = express();
 app.use(cors())
 
-app.get('/status', (request, response)=>{
+
+app.get('/status', cors(), (request, response)=>{
     return response.send({message:'server is up',status: 200})
 })
 
