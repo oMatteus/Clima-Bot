@@ -91,7 +91,7 @@ app.get('/status', (request, response)=>{
 })
 
 app.get('/get', (request, response)=>{
-    return response.status(200).json(clima)
+    return response.write(JSON.stringify(clima))
 })
 
 app.listen(3333)
