@@ -1,6 +1,7 @@
 // import puppeteer from 'puppeteer';
 const puppeteer = require('puppeteer');
 const express = require('express');
+const cors = require('cors')
 
 console.log('Bot Clima');
 let clima;
@@ -77,14 +78,19 @@ async function start(){
 }
 start();
 
+
+
+
+
 const app = express();
+app.use(cors())
 
 app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200})
 })
 
 app.get('/get', (request, response)=>{
-    return response.send(JSON.stringify(clima))
+    return response.json(clima)
 })
 
 app.listen(3333)
