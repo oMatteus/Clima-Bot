@@ -84,7 +84,7 @@ app.get('/status', (request, response)=>{
 })
 
 app.get('/get', (request, response)=>{
-    response.status().json(clima)
+    return response.status().json(clima)
 })
 
 app.listen(3333)
