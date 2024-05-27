@@ -87,11 +87,11 @@ app.use(cors())
 
 
 app.get('/status', (request, response)=>{
-    return response.send({message:'server is up',status: 201})
+    return response.send({message:'server is up',status: 200})
 })
 
 app.get('/get', (request, response)=>{
-    return response.json(clima)
+    return response.json({result: clima})
 })
 
 app.listen(3333)
