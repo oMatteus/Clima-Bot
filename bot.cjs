@@ -7,9 +7,9 @@ console.log('Bot Clima');
 let clima;
 
 async function getClima(){
-    const browser = await puppeteer.launch({
+    const browser = await puppeteer.launch(/*{
         executablePath: '/usr/bin/chromium-browser'
-      });
+      }*/);
     const page = await browser.newPage();
 
     const cidade = 'Guarulhos';
@@ -91,6 +91,7 @@ app.get('/status', (request, response)=>{
 })
 
 app.get('/get', (request, response)=>{
+    start();
     return response.json(clima)
 })
 
