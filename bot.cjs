@@ -94,12 +94,11 @@ app.use(cors())
 
 app.get('/status', (request, response)=>{
     const hora = new Date;
-    return response.send({message:'server is up',status: 200,data: hora.toLocaleDateString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
+    return response.send({message:'server is up',status: 200,data: hora.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
 app.get('/get:cidade', (request, response)=>{
     getClima(request.params.cidade);
-    start();
     return response.json(clima);
 });
 
