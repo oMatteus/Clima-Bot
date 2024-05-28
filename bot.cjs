@@ -38,24 +38,20 @@ async function getClima(){
         previsao:[
             {
                 dia: await page.evaluate(()=>{
-                    return document.querySelector('div[data-wob-di="0"] .Z1VzSb').textContent;
+                    return document.querySelector('div[data-wob-di="1"] .Z1VzSb').textContent;
                 }),
                 descricao: await page.evaluate(()=>{
-                    return document.querySelector('div[data-wob-di="0"] .DxhUm img').getAttribute('alt');
+                    return document.querySelector('div[data-wob-di="1"] .DxhUm img').getAttribute('alt');
                 }),
                 img: await page.evaluate(()=>{
-                    return document.querySelector('div[data-wob-di="0"] .DxhUm img').getAttribute('src');
+                    return document.querySelector('div[data-wob-di="1"] .DxhUm img').getAttribute('src');
                 }),
                 tempMax: await page.evaluate(()=>{
-                    return document.querySelector('div[data-wob-di="0"] .gNCp2e .wob_t').textContent;
+                    return document.querySelector('div[data-wob-di="1"] .gNCp2e .wob_t').textContent;
                 }),
                 tempMin: await page.evaluate(()=>{
-                    return document.querySelector('div[data-wob-di="0"] .QrNVmd .wob_t').textContent;
+                    return document.querySelector('div[data-wob-di="1"] .QrNVmd .wob_t').textContent;
                 }),
-                // chuva: await page.evaluate(()=>{
-                //     return document.querySelector('#wob_pp').textContent;
-                // }),
-                
             },
             {
                 dia: await page.evaluate(()=>{
@@ -64,7 +60,7 @@ async function getClima(){
             }
             
         ],
-    }
+    };
 
     await browser.close();
     return clima
@@ -91,7 +87,6 @@ app.get('/status', (request, response)=>{
 })
 
 app.get('/get', (request, response)=>{
-    start();
     return response.json(clima);
 })
 
