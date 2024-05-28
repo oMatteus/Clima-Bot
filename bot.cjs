@@ -98,8 +98,10 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get:cidade', (request, response)=>{
-    getClima(request.params.cidade);
-    return response.json(clima);
+    
+    return response.send(request.params.cidade);
+    // return response.json(clima);
+
 });
 
 app.listen(3333)
