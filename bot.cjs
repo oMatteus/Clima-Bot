@@ -3,6 +3,8 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const cors = require('cors')
 
+const execTime = new Date;
+
 console.log('Bot Clima');
 let clima;
 let cidade = 'Guarulhos';
@@ -82,8 +84,8 @@ app.use(cors());
 app.listen(3333);
 
 app.get('/status', (request, response)=>{
-    const hora = new Date;
-    return response.send({message:'server is up',status: 200,data: hora.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
+    
+    return response.send({message:'server is up',status: 200,execTime: execTime.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
 app.get('/get', (request, response)=>{
