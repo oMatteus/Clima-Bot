@@ -39,25 +39,7 @@ async function getClima(cidade){
                 return document.querySelector('#wob_tci').getAttribute('src');
             }), 
         },
-        previsao:[
-            // {
-            //     dia: await page.evaluate(()=>{
-            //         return document.querySelector('div[data-wob-di="1"] .Z1VzSb').textContent;
-            //     }),
-            //     descricao: await page.evaluate(()=>{
-            //         return document.querySelector('div[data-wob-di="1"] .DxhUm img').getAttribute('alt');
-            //     }),
-            //     img: await page.evaluate(()=>{
-            //         return document.querySelector('div[data-wob-di="1"] .DxhUm img').getAttribute('src');
-            //     }),
-            //     tempMax: await page.evaluate(()=>{
-            //         return document.querySelector('div[data-wob-di="1"] .gNCp2e .wob_t').textContent;
-            //     }),
-            //     tempMin: await page.evaluate(()=>{
-            //         return document.querySelector('div[data-wob-di="1"] .QrNVmd .wob_t').textContent;
-            //     })
-            // },
-        ],
+        previsao:[],
     };
 
     for(let i = 0; i<=6; i++){
@@ -106,16 +88,4 @@ app.get('/status', (request, response)=>{
 
 app.get('/get', (request, response)=>{
     return response.json(clima);
-});
-
-
-app.use(express.urlencoded({extended:true}));
-
-
-app.post('/cidade:name', (req, res) => {
-    let name = req.params.name;
-    let body = req.body.name;
-    cidade = name;
-    name = body;
-    return res.json(clima);
 });
