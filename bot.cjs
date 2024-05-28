@@ -116,6 +116,6 @@ app.post('/cidade:name', (req, res) => {
     let name = req.params.name;
     let body = req.body.name;
     cidade = name;
-    cidade = body;
+    name = body;
     return res.json(clima);
 });
