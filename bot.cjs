@@ -20,6 +20,9 @@ async function getClima(cidade){
 
     const clima = {
         hoje:{
+            cidade: await page.evaluate(()=>{
+                return document.querySelector('.eKPi4 .BBwThe').textContent;
+            }),
             dia: await page.evaluate(()=>{
                 return document.querySelector('#wob_dts').textContent;
             }),
@@ -101,7 +104,7 @@ app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200,data: hora.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
-app.get('/get:cidade', (request, response)=>{
+app.get('/get', (request, response)=>{
     return response.json(clima);
 });
 
@@ -109,7 +112,7 @@ app.get('/get:cidade', (request, response)=>{
 app.use(express.urlencoded({extended:true}));
 
 
-app.post('/cidade/', (req, res) => {
+app.post('/cidade:name', (req, res) => {
     let name = req.params.name;
     cidade = name;
     return res.json(clima);
