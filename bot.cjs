@@ -7,9 +7,7 @@ console.log('Bot Clima');
 let clima;
 
 async function getClima(){
-    const browser = await puppeteer.launch({
-        executablePath: '/usr/bin/chromium-browser'
-      });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     const cidade = 'Guarulhos';
@@ -84,10 +82,11 @@ app.use(cors())
 
 app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200})
-})
+});
 
 app.get('/get', (request, response)=>{
+    console.log('getou');
     return response.json(clima);
-})
+});
 
 app.listen(3333)
