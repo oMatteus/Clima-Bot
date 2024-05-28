@@ -110,7 +110,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.post('/cidade/', (req, res) => {
-    let name = req.body.name;
+    let name = req.params.name;
     cidade = name;
     return res.json(clima);
 });
