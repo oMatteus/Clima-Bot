@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const cors = require('cors')
 
-const execTime = new Date;
+const lastExec = new Date;
 
 console.log('Bot Clima');
 let clima;
@@ -81,7 +81,7 @@ const app = express();
 app.use(cors());
 
 app.get('/status', (request, response)=>{
-    return response.send({message:'server is up',status: 200,execTime: execTime.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
+    return response.send({message:'server is up',status: 200,execTime: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
 app.get('/get', (request, response)=>{
