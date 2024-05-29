@@ -77,17 +77,14 @@ async function start(){
 }
 start();
 
-
-
 const app = express();
 app.use(cors());
-app.listen(3333);
 
 app.get('/status', (request, response)=>{
-    
     return response.send({message:'server is up',status: 200,execTime: execTime.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
 app.get('/get', (request, response)=>{
     return response.json(clima);
 });
+app.listen(3333);
