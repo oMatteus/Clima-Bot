@@ -90,7 +90,6 @@ async function start(){
 start();
 
 //Express
-
 const app = express();
 app.use(cors());
 
@@ -99,7 +98,7 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    if(clima) return response.json(clima);
-    return response.send(clima);
+    if(clima) response.json({json: clima});
+    return response.send({send: clima});
 });
 app.listen(3333);
