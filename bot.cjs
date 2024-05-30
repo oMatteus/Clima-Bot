@@ -95,11 +95,11 @@ const app = express();
 app.use(cors());
 
 app.get('/status', (request, response)=>{
-    return response.send({message:'server is up',status: 200,execTime: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
+    return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
 app.get('/get', (request, response)=>{
     if(clima) return response.json(clima);
-    return response(clima);
+    return response.send(clima);
 });
 app.listen(3333);
