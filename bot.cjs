@@ -11,13 +11,13 @@ async function getClima(cidade){
 
     try {
         const browser = await puppeteer.launch({
-            // executablePath: '/usr/bin/chromium-browser'
+            executablePath: '/usr/bin/chromium-browser'
           });
         const page = await browser.newPage();
     
         const url = `https://www.google.com/search?q=clima+${cidade}&oq=clima+&gs_lcrp=EgZjaHJvbWUqDAgAEAAYQxiABBiKBTIMCAAQABhDGIAEGIoFMhYIARAuGIMBGMcBGLEDGMkDGNEDGIAEMhAIAhAAGIMBGJIDGLEDGIAEMgYIAxBFGDkyDQgEEAAYkgMYgAQYigUyDQgFEAAYgwEYsQMYgAQyCQgGEAAYChiABDIMCAcQABgKGLEDGIAEMg0ICBAAGIMBGLEDGIAEMg0ICRAAGIMBGLEDGIAEqAIAsAIA&sourceid=chrome&ie=UTF-8`;
     
-        await page.goto(url);
+        await page.goto(url2);
     
         const clima = {
             hoje:{
