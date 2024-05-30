@@ -69,9 +69,9 @@ async function getClima(cidade){
         return clima
 
     } catch (e) {
-        // console.log(e);
+        const errorMsg = e;
         const errorGetClima = {
-            catchError: e,
+            catchError: errorMsg,
         };
         return errorGetClima;
     };
