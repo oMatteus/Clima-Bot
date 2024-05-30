@@ -17,7 +17,7 @@ async function getClima(cidade){
     
         const url = `https://www.google.com/search?q=clima+${cidade}&oq=clima+&gs_lcrp=EgZjaHJvbWUqDAgAEAAYQxiABBiKBTIMCAAQABhDGIAEGIoFMhYIARAuGIMBGMcBGLEDGMkDGNEDGIAEMhAIAhAAGIMBGJIDGLEDGIAEMgYIAxBFGDkyDQgEEAAYkgMYgAQYigUyDQgFEAAYgwEYsQMYgAQyCQgGEAAYChiABDIMCAcQABgKGLEDGIAEMg0ICBAAGIMBGLEDGIAEMg0ICRAAGIMBGLEDGIAEqAIAsAIA&sourceid=chrome&ie=UTF-8`;
     
-        await page.goto(url2).catch(e);
+        await page.goto(url).catch(e);
     
         const clima = {
             hoje:{
@@ -69,9 +69,8 @@ async function getClima(cidade){
         return clima
 
     } catch (e) {
-        const errorMsg = e;
         const errorGetClima = {
-            catchError: errorMsg,
+            catchError: e,
         };
         return errorGetClima;
     };
