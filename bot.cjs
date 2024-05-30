@@ -95,7 +95,6 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    if(clima.hoje) response.json(clima);
-    response.json({DeuErro: clima})
+    return response.json(clima)
 });
 app.listen(3333);
