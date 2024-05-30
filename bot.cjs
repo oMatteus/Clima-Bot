@@ -1,8 +1,6 @@
-// import puppeteer from 'puppeteer';
 const puppeteer = require('puppeteer');
 const express = require('express');
-const cors = require('cors')
-
+const cors = require('cors');
 const lastExec = new Date;
 
 console.log('Bot Clima');
@@ -71,11 +69,11 @@ async function getClima(cidade){
     return clima
 };
  
-async function start(){
-    clima = await getClima(cidade);
-    console.log(clima);
-}
-start();
+// async function start(){
+//     clima = await getClima(cidade);
+//     console.log(clima);
+// }
+// start();
 
 const app = express();
 app.use(cors());
@@ -85,6 +83,6 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    return response.json(clima);
+    return response.json(getClima(cidade));
 });
 app.listen(3333);
