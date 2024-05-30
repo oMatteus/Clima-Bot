@@ -71,12 +71,13 @@ async function getClima(cidade){
         await browser.close();
 
         return clima
+
     } catch (e) {
         // console.log(e);
-        const error = {
+        const errorGetClima = {
             error: e
         };
-        return error;
+        return errorGetClima;
     };
 };
  
