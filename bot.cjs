@@ -9,7 +9,7 @@ let cidade = 'Guarulhos';
 
 async function getClima(cidade){
     const browser = await puppeteer.launch({
-        // executablePath: '/usr/bin/chromium-browser'
+        executablePath: '/usr/bin/chromium-browser'
       });
     const page = await browser.newPage();
 
