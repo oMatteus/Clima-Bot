@@ -5,6 +5,7 @@ const lastExec = new Date;
 
 console.log('Bot Clima');
 let cidade = 'Guarulhos';
+let clima;
 
 
 async function getClima(cidade){
@@ -71,12 +72,11 @@ async function getClima(cidade){
  
 
 async function start(){
-    const clima = await getClima(cidade);
-    return clima;
-}
+    clima = await getClima(cidade);
+    console.log(clima);
+};
 
-const clima = start();
-console.log(clima);
+start();
 
 //Express
 
