@@ -71,8 +71,11 @@ async function getClima(cidade){
         await browser.close();
 
         return clima
-    } catch (error) {
-        console.log(error);
+    } catch (e) {
+        // console.log(e);
+        const error = {
+            error: e
+        };
         return error;
     };
 };
@@ -96,6 +99,6 @@ app.get('/status', (request, response)=>{
 
 app.get('/get', (request, response)=>{
     if(clima) return response.json(clima);
-    return response(clima);
+    // return response(clima);
 });
 app.listen(3333);
