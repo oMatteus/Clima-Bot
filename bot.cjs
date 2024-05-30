@@ -4,12 +4,12 @@ const cors = require('cors');
 const lastExec = new Date;
 
 console.log('Bot Clima');
-let clima;
 let cidade = 'Guarulhos';
+
 
 async function getClima(cidade){
     const browser = await puppeteer.launch({
-        executablePath: '/usr/bin/chromium-browser'
+        // executablePath: '/usr/bin/chromium-browser'
       });
     const page = await browser.newPage();
 
@@ -69,10 +69,14 @@ async function getClima(cidade){
     return clima
 };
  
+
 async function start(){
-    clima = await getClima(cidade);
+    const clima = await getClima(cidade);
     console.log(clima);
 }
+start();
+
+//Express
 
 const app = express();
 app.use(cors());
@@ -82,8 +86,6 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-
-    start();
     return response.json(clima);
 });
 app.listen(3333);
