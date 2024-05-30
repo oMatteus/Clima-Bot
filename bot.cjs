@@ -100,6 +100,6 @@ app.get('/status', (request, response)=>{
 
 app.get('/get', (request, response)=>{
     if(clima) return response.json(clima);
-    // return response(clima);
+    return response(clima);
 });
 app.listen(3333);
