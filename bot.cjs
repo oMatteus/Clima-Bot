@@ -69,11 +69,10 @@ async function getClima(cidade){
     return clima
 };
  
-// async function start(){
-//     clima = await getClima(cidade);
-//     console.log(clima);
-// }
-// start();
+async function start(){
+    clima = await getClima(cidade);
+    console.log(clima);
+}
 
 const app = express();
 app.use(cors());
@@ -83,6 +82,6 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    return response.json(getClima(cidade));
+    return response.json(start());
 });
 app.listen(3333);
