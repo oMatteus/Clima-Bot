@@ -3,19 +3,17 @@ const express = require('express');
 const cors = require('cors');
 const lastExec = new Date;
 
-console.log('Bot Clima');
+console.log('----------------------- Iniciando Bot Clima ---------------------------------');
 let cidade = 'Guarulhos';
 let clima;
-
 
 async function getClima(cidade){
 
     try {
         const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium-browser'
+            // executablePath: '/usr/bin/chromium-browser'
           });
         const page = await browser.newPage();
-    
     
         const url = `https://www.google.com/search?q=clima+${cidade}&oq=clima+&gs_lcrp=EgZjaHJvbWUqDAgAEAAYQxiABBiKBTIMCAAQABhDGIAEGIoFMhYIARAuGIMBGMcBGLEDGMkDGNEDGIAEMhAIAhAAGIMBGJIDGLEDGIAEMgYIAxBFGDkyDQgEEAAYkgMYgAQYigUyDQgFEAAYgwEYsQMYgAQyCQgGEAAYChiABDIMCAcQABgKGLEDGIAEMg0ICBAAGIMBGLEDGIAEMg0ICRAAGIMBGLEDGIAEqAIAsAIA&sourceid=chrome&ie=UTF-8`;
     
@@ -67,15 +65,13 @@ async function getClima(cidade){
     
             clima.previsao.push(obj)
         };
-    
         await browser.close();
-
         return clima
 
     } catch (e) {
         // console.log(e);
         const errorGetClima = {
-            error: e
+            catchError: e
         };
         return errorGetClima;
     };
@@ -84,10 +80,11 @@ async function getClima(cidade){
 
 async function start(){
     clima = await getClima(cidade);
+    console.log('Chamando o objeto clima');
     console.log(clima);
 };
-
 start();
+
 
 //Express
 const app = express();
@@ -98,7 +95,7 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    if(clima.error) response.json({DeuErro: clima})
-    response.json(clima);
+    if(clima.hoje) response.json(clima);
+    response.json({DeuErro: clima})
 });
 app.listen(3333);
