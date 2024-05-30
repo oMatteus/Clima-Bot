@@ -12,7 +12,7 @@ async function getClima(cidade){
 
     try {
         const browser = await puppeteer.launch({
-            // executablePath: '/usr/bin/chromium-browser'
+            executablePath: '/usr/bin/chromium-browser'
           });
         const page = await browser.newPage();
     
@@ -98,7 +98,7 @@ app.get('/status', (request, response)=>{
 });
 
 app.get('/get', (request, response)=>{
-    if(clima) response.json({json: clima});
-    return response.send({send: clima});
+    if(clima.error) response.json({DeuErro: clima})
+    response.json(clima);
 });
 app.listen(3333);
