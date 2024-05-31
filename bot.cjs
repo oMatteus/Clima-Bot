@@ -40,7 +40,7 @@ async function getClima(cidade){
                     return document.querySelector('#wob_tci').getAttribute('src');
                 }), 
             },
-            previsao:[],
+            semana:[],
         };
     
         for(let i = 0; i<=6; i++){
@@ -63,7 +63,7 @@ async function getClima(cidade){
                 },i)
             };
     
-            clima.previsao.push(obj)
+            clima.semana.push(obj)
         };
         await browser.close();
         return clima
