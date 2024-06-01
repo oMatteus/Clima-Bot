@@ -3,16 +3,18 @@ const express = require('express');
 const cors = require('cors');
 const lastExec = new Date;
 
-console.log('----------------------- Iniciando Bot Clima ---------------------------------');
-let cidade = 'Guarulhos';
+console.log('----------------------- Bot Clima Iniciado ---------------------------------');
+
 let clima;
 
 async function getClima(cidade){
 
     try {
-        const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium-browser'
+
+        let browser = await puppeteer.launch({
+            // executablePath: '/usr/bin/chromium-browser'
           });
+
         const page = await browser.newPage();
     
         const url = `https://www.google.com/search?q=clima+${cidade}&oq=clima+&gs_lcrp=EgZjaHJvbWUqDAgAEAAYQxiABBiKBTIMCAAQABhDGIAEGIoFMhYIARAuGIMBGMcBGLEDGMkDGNEDGIAEMhAIAhAAGIMBGJIDGLEDGIAEMgYIAxBFGDkyDQgEEAAYkgMYgAQYigUyDQgFEAAYgwEYsQMYgAQyCQgGEAAYChiABDIMCAcQABgKGLEDGIAEMg0ICBAAGIMBGLEDGIAEMg0ICRAAGIMBGLEDGIAEqAIAsAIA&sourceid=chrome&ie=UTF-8`;
@@ -76,13 +78,12 @@ async function getClima(cidade){
     };
 };
  
-
-async function start(){
-    clima = await getClima(cidade);
+async function start(cidade){
     console.log('Chamando o objeto clima');
+    clima = await getClima(cidade);
     console.log(clima);
+    return clima;
 };
-start();
 
 
 //Express
@@ -93,7 +94,11 @@ app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
-app.get('/get', (request, response)=>{
+app.get('/clima/:cidade', async (request, response)=>{
+    let cidade = request.params.cidade;
+
+    await start(cidade);
     return response.json(clima)
 });
-app.listen(3333);
+
+app.listen(433);
