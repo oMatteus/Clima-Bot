@@ -84,6 +84,7 @@ async function start(cidade){
     console.log(clima);
     return clima;
 };
+start(guarulhos)
 
 
 //Express
