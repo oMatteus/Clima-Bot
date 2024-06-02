@@ -67,7 +67,7 @@ async function getClima(cidade){
     
             clima.semana.push(obj)
         };
-        await browser.close();
+        // await browser.close();
         return clima
 
     } catch (e) {
