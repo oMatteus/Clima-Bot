@@ -11,9 +11,11 @@ async function getClima(cidade){
 
     try {
 
-        let browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium-browser'
-          });
+        let browser = await puppeteer.launch(
+        //     {
+        //     executablePath: '/usr/bin/chromium-browser'
+        //   }
+        );
 
         const page = await browser.newPage();
     
