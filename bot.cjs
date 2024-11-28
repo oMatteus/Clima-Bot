@@ -12,7 +12,10 @@ async function getClima(cidade){
     try {
 
         let browser = await puppeteer.launch({
-            // executablePath: '/usr/bin/chromium-browser'
+            // executablePath: '/usr/bin/chromium-browser',
+            headless: false,
+            slowMo: 50,      // execução mais lenta
+            defaultViewport: null 
           });
 
         const page = await browser.newPage();
@@ -36,10 +39,10 @@ async function getClima(cidade){
                     return document.querySelector('#wob_pp').textContent;
                 }),
                 descricao: await page.evaluate(()=>{
-                    return document.querySelector('#wob_tci').getAttribute('alt');
+                    return document.querySelector('#ewzi8b img').getAttribute('alt');
                 }),
                 img: await page.evaluate(()=>{
-                    return document.querySelector('#wob_tci').getAttribute('src');
+                    return document.querySelector('#ewzi8b img').getAttribute('src');
                 }), 
             },
             semana:[],
@@ -84,9 +87,9 @@ async function start(cidade){
     console.log(clima);
     return clima;
 };
+
+
 start('guarulhos')
-
-
 
 
 
@@ -107,4 +110,4 @@ app.get('/clima/:cidade', async (request, response)=>{
     return response.json(clima)
 });
 
-app.listen(3333);
+app.listen(3334);
