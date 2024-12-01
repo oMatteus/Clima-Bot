@@ -94,12 +94,14 @@ async function start(cidade){
 const app = express();
 app.use(cors());
 
-app.get('/status', (request, response)=>{
+app.get('/clima/status', (request, response)=>{
     return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
-app.get('/:cidade', async (request, response)=>{
+app.get('/clima/:cidade', async (request, response)=>{
     let cidade = request.params.cidade;
+
+    if(!cidade) return response.send({message:'Passe uma cidade como parâmetro'})
 
     await start(cidade);
     return response.json(clima)
