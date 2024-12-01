@@ -90,13 +90,6 @@ async function start(cidade){
     return clima;
 };
 
-
-start('guarulhos')
-
-
-
-
-
 //Express
 const app = express();
 app.use(cors());
@@ -105,7 +98,7 @@ app.get('/status', (request, response)=>{
     return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
-app.get('/clima/:cidade', async (request, response)=>{
+app.get('/:cidade', async (request, response)=>{
     let cidade = request.params.cidade;
 
     await start(cidade);
