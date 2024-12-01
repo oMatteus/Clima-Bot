@@ -11,5 +11,5 @@
     },
     "scripts": {
         "prod:start": "pm2-runtime app.js"
-      }
+    }
 }

@@ -11,11 +11,13 @@ async function getClima(cidade){
 
     try {
 
+        const isWindows = process.platform === 'win32';
+
         let browser = await puppeteer.launch({
-            // executablePath: '/usr/bin/chromium-browser',
-            headless: false,
-            slowMo: 50,      // execução mais lenta
-            defaultViewport: null 
+            executablePath: isWindows ? undefined : '/usr/bin/chromium-browser',
+            headless: isWindows ? false : true,
+            // slowMo: 50,      // execução mais lenta
+            // defaultViewport: null 
           });
 
         const page = await browser.newPage();
@@ -70,7 +72,7 @@ async function getClima(cidade){
     
             clima.semana.push(obj)
         };
-        // await browser.close();
+        await browser.close();
         return clima
 
     } catch (e) {
