@@ -1,11 +1,20 @@
 const puppeteer = require('puppeteer');
-const express = require('express');
-const cors = require('cors');
-const lastExec = new Date;
 
-console.log('----------------------- Bot Clima Iniciado ---------------------------------');
+async function start(cidade){
+    console.log('Buscando dados de clima');
+    clima = await getClima(cidade);
+    console.log(clima);
+    return clima;
+};
 
-let clima;
+exports.init = async(req, res)=>{
+    let cidade = req.query.cidade;
+
+    if(!cidade) return res.status(400).send({ message: 'Passe uma cidade como parâmetro na query string (ex: ?cidade=paris)' });
+    
+    await start(cidade);
+    return res.json(clima)
+};
 
 async function getClima(cidade){
 
@@ -86,29 +95,3 @@ async function getClima(cidade){
         return errorGetClima;
     };
 };
- 
-async function start(cidade){
-    console.log('Chamando o objeto clima');
-    clima = await getClima(cidade);
-    console.log(clima);
-    return clima;
-};
-
-//Express
-const app = express();
-app.use(cors());
-
-app.get('/clima/status', (request, response)=>{
-    return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
-});
-
-app.get('/clima', async (request, response)=>{
-    let cidade = request.query.cidade;
-
-    if(!cidade) return response.status(400).send({ message: 'Passe uma cidade como parâmetro na query string (ex: ?cidade=paris)' });
-    
-    await start(cidade);
-    return response.json(clima)
-});
-
-app.listen(3334);
