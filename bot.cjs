@@ -98,11 +98,11 @@ app.get('/clima/status', (request, response)=>{
     return response.send({message:'server is up',status: 200,lastExec: lastExec.toLocaleString('pt-BR',{dateStyle: 'full', timeStyle: 'short'})})
 });
 
-app.get('/clima/:cidade', async (request, response)=>{
-    let cidade = request.params.cidade;
+app.get('/clima', async (request, response)=>{
+    let cidade = request.query.cidade; // Coleta o parâmetro "cidade" da query string
 
-    if(!cidade) return response.send({message:'Passe uma cidade como parâmetro'})
-
+    if(!cidade) return response.status(400).send({ message: 'Passe uma cidade como parâmetro na query string (ex: ?cidade=paris)' });
+    
     await start(cidade);
     return response.json(clima)
 });
