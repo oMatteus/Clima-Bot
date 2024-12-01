@@ -99,7 +99,7 @@ app.get('/clima/status', (request, response)=>{
 });
 
 app.get('/clima', async (request, response)=>{
-    let cidade = request.query.cidade; // Coleta o parâmetro "cidade" da query string
+    let cidade = request.query.cidade;
 
     if(!cidade) return response.status(400).send({ message: 'Passe uma cidade como parâmetro na query string (ex: ?cidade=paris)' });
     
