@@ -14,7 +14,7 @@ async function getClima(cidade){
         const isWindows = process.platform === 'win32';
 
         let browser = await puppeteer.launch({
-            // executablePath: isWindows ? undefined : '/usr/bin/chromium-browser',
+            executablePath: isWindows ? undefined : '/usr/bin/chromium-browser',
             headless: isWindows ? false : true,
             // slowMo: 50,      // execução mais lenta
             // defaultViewport: null 
