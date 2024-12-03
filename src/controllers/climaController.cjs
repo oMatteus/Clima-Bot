@@ -54,10 +54,10 @@ async function getClima(cidade){
                     return document.querySelector('#wob_pp').textContent;
                 }),
                 descricao: await page.evaluate(()=>{
-                    return document.querySelector('#ewzi8b img').getAttribute('alt');
+                    return document.querySelector('#wob_wc img').getAttribute('alt');
                 }),
                 img: await page.evaluate(()=>{
-                    return document.querySelector('#ewzi8b img').getAttribute('src');
+                    return document.querySelector('#wob_wc img').getAttribute('src');
                 }), 
             },
             semana:[],
